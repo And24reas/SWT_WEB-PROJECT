@@ -1,0 +1,49 @@
+= Protokoll Gruppe 47
+
+Treffen am 23.11.2019
+
+Ort:      APB +
+Beginn:   16:40 Uhr +
+Ende:   18:10 Uhr
+
+__Schriftführer:__ Lanea Lilienthal
+
+*Nächstes Treffen:* +
+28.10.2019, 15:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Ada
+- Andreas
+- David
+- Janosch
+- Lanea
+- Marie
+- Daniel (Tutor)
+
+== Bemerkungen
+Kundenvorstellungen wurden detaillierter besprochen. 
+Aufgaben für die Analysephase wurden verteilt.
+Organisatorisches: Pull requests nutzen, issues nutzen und referenzieren
+
+== Aktueller Stand
+Erste Analyse der Aufgabenstellung.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|1     |Analyseklassendiagramm     |-            |Marie                |nicht begonnen
+|2     |Sequenzdiagramme     |-            |Janosch                |nicht begonnen
+|3     |Kontextdiagramm     |-            |Lanea                |fertig
+|4     |Top Level Architektur     |-            |David                |nicht begonnen
+|5     |Use Case Diagramme     |-            |Andreas                |nicht begonnen
+|6     |Dialoglandkarte     |-            |Ada                |nicht begonnen
+|7     |GUI Prototyp     |-            |Ada                |nicht begonnen
+|8     |Pflichtenheft     |-            |Janosch                |nicht begonnen
+|9     |CRC Karten     |zusammen erstellen            |alle                |fertig
+|===
