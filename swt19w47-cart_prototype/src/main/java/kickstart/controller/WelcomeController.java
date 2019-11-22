@@ -135,58 +135,36 @@ public class WelcomeController {
 
 	}
 
-	@PostMapping("/increaseAmount/{id}")
+@PostMapping("/increaseAmount/{id}")
 	String increaseAmount(@ModelAttribute Cart cart, @RequestParam("productID") String id){
 
-		
-		
-		
-		CartItem cItem = cart.getItem(id).get();
-		
+		CartItem cItem = cart.getItem(id).get();	
 		Quantity quantity = cItem.getQuantity();
-		
-		
-			
-		
-		cart.addOrUpdateItem(cItem.getProduct(), Quantity.of(1));
-		
-/*
-		if (number >= 1 && number <= 5 && cart.getItem(id).isPresent()) {
-			CartItem cItem = cart.getItem(id).get();
-			int amount = number;
-			cart.addOrUpdateItem(cItem.getProduct(),Quantity.of(amount));
+	
+		if(quantity.isLessThan(Quantity.of(5))) {
+			cart.addOrUpdateItem(cItem.getProduct(), Quantity.of(1));
+			return "redirect:/cart";
 		}
-*/
+		
 		return "redirect:/cart";
+			
 	}
 
 
 	@PostMapping("/decreaseAmount/{id}")
 	String decreaseAmount(@ModelAttribute Cart cart, @RequestParam("productID") String id){
-
 		
-		
-		
-		CartItem cItem = cart.getItem(id).get();
-		
+		CartItem cItem = cart.getItem(id).get();		
 		Quantity quantity = cItem.getQuantity();
 		
 		
-			
+		if(quantity.isGreaterThan(Quantity.of(1))) {			
 		
-		cart.addOrUpdateItem(cItem.getProduct(), Quantity.of(-1));
-		
-/*
-		if (number >= 1 && number <= 5 && cart.getItem(id).isPresent()) {
-			CartItem cItem = cart.getItem(id).get();
-			int amount = number;
-			cart.addOrUpdateItem(cItem.getProduct(),Quantity.of(amount));
+			cart.addOrUpdateItem(cItem.getProduct(), Quantity.of(-1));
+			return "redirect:/cart";
 		}
-*/
+		
 		return "redirect:/cart";
 	}
-
-
-
 }
 
