@@ -1,0 +1,77 @@
+= Protokoll Gruppe 47
+
+Treffen am 06.11.2019
+
+Ort:      APB +
+Beginn:   16:40 Uhr +
+Ende:     18:10 Uhr
+
+__Schriftführer:__ Lanea Lilienthal
+
+*Nächstes Treffen:* +
+11.11.2019, 15:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Ada
+- Andreas
+- David
+- Janosch
+- Lanea
+- Marie
+- Daniel (Tutor)
+
+== Bemerkungen
+Projekt wurde von Janosch angelegt. 
+
+Für die Prototypen: Prototyp branch erstellen von dem aus alle ihren eigenen branch erstellen. Wenn alle fertig sind: auf Prototyp (nicht master!) mergen - sollte als ganzes funktionieren, aber nicht Pflicht
+
+Diagramme für Entwurfsphase in den design Ordner. Dort auch eigenes Projekt mit allen Diagrammen erstellen. 
+
+Aufgaben für die Entwickerdoku aufgeteilt in: 1. (1+2), 2. (3 + 4.2), 3. (4.1), 4. (4.3 + 4.4), 5. Verantwortung Ent.kl.diagramme + Tabelle, 6. (6 - hier reicht 1!)
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1     |Analyseklassendiagramm       |fertig      |-
+|2     |Sequenzdiagramm       |fertig      |-
+|3     |Kontextdiagramm       |fertig      |-
+|4     |Top Level Architektur       |fertig      |Pfeile ordentlich anordnen
+|5     |Use Case Diagramme       |fertig      |-
+|6     |Dialoglandkarte       |fertig      |-
+|7     |GUI Prototyp       |fertig      |-
+|8     |Pflichtenheft       |in Arbeit      |Top-Level-Architektur und restliche Akzeptanztestfälle einfügen
+|9     |CRC Karten       |fertig      |liegt in analysis Ordner
+|-     |Videoshop - Preisanpassung Warenkorb            |fertig              |Aufgabe geändert zu: reg. User versucht sich zu reg.
+|-     |Videoshop - nur ein Kommi pro User soll möglich sein            |in Arbeit                |Korrektur (useridentifier + hidden input) sind noch vorzunehmen
+|-     |Videoshop - Lager anpassbar machen |fertig |Janosch
+|-     |Videoshop - Kundenliste bearbeitbar machen |fertig |Andreas
+|-     |Videoshop - E-Mail Angabe für Kunden |fertig |Ada
+|-     |Videoshop - Errorhandling Bewertung |fertig |David
+|===
+
+
+== Aktueller Stand
+Pflichtenheft samt aller Diagramme fertig. Entwurfsphase beginnt.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|14     |Prototyp    |Produktverwaltung (Liste, CRUD, Produktklassen definieren)            |Marie                |noch nicht begonnen
+|12     |Prototyp     |Personalverwaltung (Liste, CRUD, Datainitializer für Mitarbeiter)            |Lanea                |noch nicht begonnen
+|11     |Prototyp     |Fotolabor (Auftragsliste, Sammelbestellung, Status anpassbar, Bearbeitungszeit/-preis angebbar, Details/Abholdatum anzeigbar)           |Janosch                |noch nicht begonnen
+|15     |Prototyp     |Reservierungsverwaltung (WK simulieren, Res. in Detail, Status ändern, Auftragsklasse mit Dummyprodukten)            |Andreas                |noch nicht begonnen
+|13     |Prototyp     |Warenkorb (Liste, CRUD, leeren, abschließen (Quittung...))            |Ada                |noch nicht begonnen
+|16     |Prototyp     |Finanzverwaltung (Filtern, eigene hinzufügen, Liste)           |David                |noch nicht begonnen
+|18     |Entwicklerdoku    |Entwicklerdoku vervollständigen            |alle                |noch nicht begonnen
+|===

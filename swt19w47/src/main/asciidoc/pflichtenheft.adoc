@@ -1,0 +1,1459 @@
+= Pflichtenheft
+:project_name: Projektname
+== __{project_name}__
+
+[options="header"]
+[cols="1, 1, 1, 1, 4"]
+|===
+|Version | Status      | Bearbeitungsdatum   | Autor(en) |  Vermerk
+|0.1     | In Arbeit   | 10.10.2019          | Autor       | Initiale Version
+|0.2     | In Arbeit   | 25.10.2019          | Janosch Opitz       | Work in progress
+|===
+
+== Inhaltsverzeichnis
+
+*Zusammenfassung*
+
+* <<anchor-1,Aufgabenstellung und Zielsetzung>>
+* <<anchor-2,Produktnutzung>>
+* <<anchor-3,Interessensgruppen (Stakeholders)>>
+
+*Systemgrenze und Top-Level-Architektur:*
+
+* <<anchor-4,Kontextdiagramm>>
+* <<anchor-5,Top-Level-Architektur>>
+
+*Anwendungsfälle:*
+
+* <<anchor-6,Akteure>>
+* <<anchor-7,Überblick Anwendungsfalldiagramm>>
+* <<anchor-8,Anwendungsfallbeschreibungen>>
+
+*Funktionale Anforderungen:*
+
+* <<anchor-9,Muss-Kriterien>>
+* <<anchor-10,Kann-Kriterien>>
+
+*Nicht-Funktionale Anforderungen:*
+
+* <<anchor-11,Qualitätsziele>>
+* <<anchor-12,Konkrete Nicht-Funktionale Anforderungen>>
+
+*GUI Prototyp:*
+
+* <<anchor-13,Überblick: Dialoglandkarte>>
+* <<anchor-14,Dialogbeschreibung>>
+
+*Datenmodell:*
+
+* <<anchor-15,Überblick: Klassendiagramm>>
+* <<anchor-16,Klassen und Enumerationen>>
+
+*Testfälle:*
+
+* <<anchor-17,Akzeptanztestfälle>>
+
+*Weiteres:*
+
+* <<anchor-18,Glossar>>
+* <<anchor-19,Offene Punkte>>
+
+== Zusammenfassung
+// TODO: Refine this section! I have no idea what to say here.
+
+> Im Pflichtenheft wird das Ausschlussprinzip verwendet. Es werden konkrete Fälle ein- und ausgeschlossen. Zusätzlich findet sich im Pflichtenheft eine schriftliche Dokumentation der Analysen. Das ist die Grundlage für das weitere Vorgehen.
+(https://wiki.induux.de/Pflichtenheft)
+
+[[anchor-1]]
+== Aufgabenstellung und Zielsetzung
+Der Besitzer eines Fotoateliers möchte endlich die Papierberge in seinem Büro reduzieren
+und will alle Arbeitsabläufe zukünftig mit dem Computer verwalten. Darüber hinaus gefällt
+ihm aufgrund des schnellen Wachstums des Webs die Idee, einige Serviceangebote des
+Fotoateliers bequem über das Internet anzubieten. Aus den genannten Gründen
+entschied sich der Besitzer des Ateliers die Entwicklung einer geeigneten Websoftware in
+Auftrag zu geben, welche die im Folgenden erläuterten Dienste unterstützen soll.
+Der Hauptgeschäftsbereich im Atelier ist heutzutage die Ausführung verschiedenster
+digitaler und analoger Fotoarbeiten: Entwicklung von Filmen, Abzüge vom Negativ,
+Kopien von alten Bildern und Vergrößerungen. Dabei wird jeder Auftrag durch eine
+Nummer identifiziert. Neben der Art der vereinbarten Fotoarbeit werden der Name und
+die Adresse des Kunden, sowie das Abgabedatum registriert. Der Kunde erhält einen Bon
+mit der Auftragsnummer. Ein voraussichtlicher Fertigstellungstermin wird ihm genannt. Das
+Atelier verwaltet die Aufträge und leitet diese einmal täglich an ein Fotolabor weiter. Nach
+Fertigstellung eines solchen Sammelauftrags schickt das Fotolabor die Fotoarbeiten an das
+Atelier zurück, welches diese dem Kunden gegen Vorlage des Bons aushändigt. Dabei
+wird entsprechend der Preisliste bezahlt.
+Daneben betreibt das Atelier – wie in alten Zeiten – ein kleines Aufnahmestudio für Portraits
+und Passbilder. Die Abrechnung mit dem Kunden erfolgt ebenso wie bei den anderen
+Fotoarbeiten. Allerdings können auch Sofortbilder gemacht werden, die der Kunde
+anschließend gleich bezahlt und auf die ein Aufschlag von 30% erhoben wird. Außerdem
+erhält man im Atelier häufig gefragtes Foto-Zubehör (jeweils verschiedenste Formate und
+Hersteller): Filme, Fotoalben, Bilderrahmen usw.
+Die Software soll dem Besitzer und seinen Angestellten die Möglichkeit bieten all diese
+Vorgänge und Daten vor Ort durch einen geschützten Bereich mit einer komfortablen und
+leicht zu bedienenden Oberfläche zu erfassen und zu verwalten. Dazu gehört die
+Möglichkeit, das Produkt- und Zubehörangebot entsprechend den Nachfragen
+aktualisieren und erfassen zu können, den Zubehörbestand zu verwalten, die Kasse zu
+führen und das Geschäftsergebnis wöchentlich zu ermitteln.
+Auch dem Kunden soll die Software künftig die Möglichkeit bieten, komfortabel über das
+Internet digitale Dienste in Anspruch zu nehmen. Ein Kunde soll sich bei der Software
+registrieren und mit seinem Konto einloggen können. Dadurch bekommt er Zugriff auf
+seinen persönlichen Bereich, wo er alle seine bisherigen Aufträge und
+Auftragsinformationen einsehen und verwalten kann. Des Weiteren bekommt ein
+registrierter Benutzer Zugriff auf verschiedene Webservices. So soll es jedem Kunden
+möglich sein durch das Produkt- bzw. Zubehörsortiment des Ateliers zu stöbern und
+Informationen, Preise und deren Verfügbarkeit im Atelier bequem per Internet abzurufen.
+Um dem Kunden möglichst viel Komfort zu bieten, denkt der Atelierbesitzer auch darüber
+nach einen Online-Fotodruckservice für digitale Fotos anzubieten. Dabei kann jeder Kunde
+online neue Aufträge erteilen, indem er die gewünschten Fotos mit Angabe der
+gewünschten Druckformate und Stückzahlen in der Software hoch lädt. Anschließend
+erhält der Kunde einen Bon, mit dem er die Fotos wie gehabt im Atelier abholen und
+bezahlen kann.
+
+[[anchor-2]]
+== Produktnutzung
+
+Die Anwendung soll es Nutzern möglich machen von Zuhause im Produkt- und Dienstleistungs-Sortiment das Fotoateliers zu stöbern. Sie soll auf einem Server laufen und somit gewährleisten, dass jeder (registrierte) Nutzer die Möglichkeit hat 24/7 über das Internet (den Browser) das Sortiment aufzurufen und Aufträge abzuschicken. Nicht registrieret Nutze können nur im Sortiment stöbern, jedoch keine Reservierung auslösen.
+
+Außerdem soll die Anwendung als Hilfestellung (Lagerbestände, Buchungen etc.) für die Angestellten beim Direktkauf von Produkten im Geschäft dienen, als auch beim Abholen/Bezahlen der reservierten Produkte. Dies erreicht Sie durch die Bereitstellung einer Oberfläche zur einfachen Kaufabwicklung/Abwicklung im Geschäft. Außerdem bietet sie Mitarbeitern die möglichkeit Kundenaccounts zu verwalten.
+
+Des Weiteren bietet sie dem Administrator des Systems die Möglichkeit Mitarbeiter und Kunden zu verwalten (CRUD-Operationen, Löhne auszahlen, etc.). Auch dies soll über eine separate Oberfläche möglich gemacht werden.
+
+[[anchor-3]]
+== Interessensgruppen (Stakeholders)
+
+[options="header"]
+[cols="1,1,1,1"]
+|===
+|Name |Priorität (1..5) |Beschreibung |Erwartung
+|Geschäftsführer (Admin) |5 |Administrator der Anwendung |Verwaltung von Finanzen, Mitarbeitern, Kunden
+|Kunde |4 |Hauptnutzer der Anwendung |Reservieren von Produkten/Leistungen online und Verwaltung seiner eigenen Bestellungen
+|Angestellte |3 |Nutzen Anwendung im Tagesgeschäft |Vereinfachte Abwicklung des Tagesgeschäft
+|===
+
+== Systemgrenze und Top-Level-Architektur
+
+[[anchor-4]]
+=== Kontextdiagramm
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/KontextdiagrammMagicDraw.png[GitHub mascot]
+
+[[anchor-5]]
+=== Top-Level-Architektur
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/Top%20Level/TopLevelArchitektur_Fotoatelier_remake.png[GitHub mascot]
+
+// TODO!
+
+// image::link-to-top-level[GitHub mascot]
+
+== Anwendungsfälle
+
+[[anchor-6]]
+=== Akteure
+
+Akteure sind die Benutzer des Software-Systems oder Nachbarsysteme, welche darauf zugreifen. Dokumentieren Sie die Akteure in einer Tabelle. Diese Tabelle gibt einen Überblick über die Akteure und beschreibt sie kurz. Die Tabelle hat also mindestens zwei Spalten (Akteur Name und Kommentar).
+Weitere relevante Spalten können bei Bedarf ergänzt werden.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+[cols="1,4"]
+|===
+|Name |Beschreibung
+|User  |Representative for every person, who interacts with the system, regardless if authenticated or not.
+|Registered User  |Representative for every person, who does have an account, is authenticated and interacts with the system.
+|Unregistered User  |Representative for unauthenticated access (i.e. unauthenticated visitors)
+|Admin  |Any registered (and authenticated) user, who has the Role "ADMIN". Is responsible for administration of the application. Only role that has access to the financial and employee-management. Has also control over the customer-accounts.
+|Employee  |Any registered (and authenticated) user, who has the Role "EMPLOYEE". Has control over the customer-accounts.
+|Customer  |Any registered (and authenticated) user, who has the Role "CUSTOMER". Can reserve products/services and manage their reservatons online.
+|===
+
+[[anchor-7]]
+=== Überblick Anwendungsfalldiagramm
+Anwendungsfall-Diagramm, das alle Anwendungsfälle und alle Akteure darstellt
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/Use-Case_Diagram.jpg[GitHub mascot]
+
+[[anchor-8]]
+=== Anwendungsfallbeschreibungen
+Dieser Unterabschnitt beschreibt die Anwendungsfälle. In dieser Beschreibung müssen noch nicht alle Sonderfälle und Varianten berücksichtigt werden. Schwerpunkt ist es, die wichtigsten Anwendungsfälle des Systems zu finden. Wichtig sind solche Anwendungsfälle, die für den Auftraggeber, den Nutzer den größten Nutzen bringen.
+Für komplexere Anwendungsfälle ein UML-Sequenzdiagramm ergänzen.
+Einfache Anwendungsfälle mit einem Absatz beschreiben.
+Die typischen Anwendungsfälle (Anlegen, Ändern, Löschen) können zu einem einzigen zusammengefasst werden.
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__online_hardware_commission__online_hardware_commission.jpg[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__store_hardware_commission__store_hardware_commission.jpg[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__online_service_commission__online_service_commission.jpg[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__store_service_commission__store_service_commission.jpg[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__employee_service__employee_service.jpg[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/sd__order_service_state_change__order_service_state_change.jpg[GitHub mascot]
+
+[cols="1h, 3"]
+[[UC0001]]
+|===
+|ID                         |**<<UC0001>>**
+|Name                       |Login/Logout
+|Description                |User sollen sich einloggen (authentifizieren) können, um weitere Funktionen nutzen zu können.
+Entsprechend sollen sie auch die Möglichkeit haben sich wieder auszuloggen.
+|Actors                     |Customer
+|Trigger                    |
+_Login_: Customer sind bereits registriert und wollen sich einloggen, um weitere Funktionen nutzen zu können.
+
+_Logout_: Customer wollen den Shop verlassen.
+|Precondition(s)           a|
+_Login_: Customer ist noch nicht eingeloggt.
+
+_Logout_: Customer ist bereits eingeloggt.
+|Essential Steps           a|
+_Login_:
+
+  1. Customer klickt in der Navigationsleiste auf "Login".
+  2. Customer gibt seine Daten (Username und Passwort) ein.
+  3. Customer drückt den "Login" Button.
+  4. Das System checkt die Richtigkeit seiner Daten
+  . Korrekt: Der Customer ist eingeloggt und kann weitere Funktionen der Seite nutzen.
+  . Falsche Eingabe: Eine Fehlermeldung wird angezeigt
+
+_Logout_:
+
+  1. Customer klickt auf "Logout" in der Navigationsleiste.
+  2. Customer ist ausgeloggt und kehrt zum Home-Screen mit der anfänglichen eingeschränkten Funktionalität zurück.
+
+|Extensions                 |-
+|Functional Requirements    |<<F0001>>
+|===
+
+[cols="1h, 3"]
+[[UC0002]]
+|===
+|ID                         |**<<UC0002>>**
+|Name                       |Registrieren
+|Description                |Ein unregistrierter User soll einen Account anlegen können, um weitere Funktionen nutzen zu können.
+|Actors                     |User
+|Trigger                    |Ein User möchte einen Account anlegen, indem er auf "Registrieren" klickt.
+|Precondition(s)           a|Der User ist noch nicht registriert.
+|Essential Steps           a|
+1.  User klickt auf den "Registrieren"-Button.
+2.  User gibt gewünschten Nutzernamen, Passwort, Adresse, Telefonnummer und E-Mail an.
+3.  Das System prüft, ob der Username bereits vergeben ist.
+  . Falls nicht: Ein Account mit den angegebenen Daten wird erstellt und der User ist eingeloggt.
+  . Falls bereits vergeben: Eine Fehlermeldung wird angezeigt.
+|Extensions                 |-
+|Functional Requirements    |<<F0002>>, <<F0003>>
+|===
+
+[[UC0010]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0010>>**
+|Name                       |Katalog ansehen
+|Description                |Alle Besucher der Website sollen den Katalog einsehen können, der alle verfügbaren Produkte und Services beinhaltet. Es kann zwischen Hardware und Services gefiltert werden.
+|Actors                     |User, Customer
+|Trigger                    |Ein Nutzer klickt in der Navigationsleiste auf "Produkte & Services".
+|Precondition(s)           a|-
+|Essential Steps           a|1. Der Nutzer klckt auf das Navigationselement "Produkte & Services".
+                             2. Es werden alle Produkte & Services aufgelistet.
+                             3. [Optional] Der Nutzer klickt auf "Produkte" oder "Services", um sich nur diese anzeigen zu lassen.
+                             4. [Optional] Dem Nutzer werden entsprechend alle Hardware-Produkte bzw. Services angezeigt.
+|Extensions                 |-
+|Functional Requirements    | <<F0004>>, <<F0005>>, <<F0006>>, <<F0007>>
+|===
+
+[[UC0011]]
+[cols="1h, 3"]
+|===
+|ID                         |**<<UC0011>>**
+|Name                       |Produkt Details betrachten
+|Description                |Nutzer sollen detaillierte Informationen zu einzelnen Produkten einsehen können.
+|Actors                     |User, Customer
+|Trigger                    |Ein Nutzer klickt auf ein bestimmtes Produkt im Katalog.
+|Precondition(s)           a|Nutzer befindet sich bereits im Katalog.
+|Essential Steps           a|
+1.  Der Nutzer klickt auf ein bestimmtes Produkt/Service.
+2.  Dem Nutzer werden die Details des ausgewählten Produkts/Services angezeigt.
+|Extensions                 |-
+|Functional Requirements    | <<F0009>>
+|===
+
+[cols="1h,3"]
+[[UC0012]]
+|===
+|ID                         |**<<UC0012>>**
+|Name                       |Produkt/Service reservieren
+|Description                |Customers sollen Produkte/Services reservieren können, um sie später im Laden abzuholen.
+|Actors                     |Customer
+|Trigger                    |Customer will ein Produkt/Service reservieren.
+|Precondition(s)           a|- Nutzer ist authentifiziert (eingeloggt).
+- Customer sieht die Details eines Produktes/Services ein.
+|Essential Steps           a|
+1. Der Customer wählt die gewünschte Menge aus. Bei Services wird hier zusätzlich ein Termin ausgewählt.
+2. Der Customer klickt auf "reservieren". Damit werden die Produkte zunächst dem Warenkorb hinzugefügt und der Lagerstand angepasst.
+3. Der Customer klickt auf den Warenkorb in der Navigationsleiste.
+4. Der Customer klickt auf "Reservierung abschließen" und reserviert so alle im Warenkorb befindlichen Produkte/Services.
+5. Dem Customer wird ein Abholschein angezeigt und die Bestellung zu seiner Bestellübersicht hinzugefügt.
+|Extensions                a|-
+|Functional Requirements    | <<F0010>>, <<F0011>>, <<F0012>>, <<F0014>>
+|===
+
+[cols="1h,3"]
+[[UC0013]]
+|===
+|ID                         |**<<UC0013>>**
+|Name                       |Warenkorb einsehen
+|Description                |Customer sollen den Inhalt ihres Warenkorbs und den gesamten Preis des Inhalts einsehen können.
+|Actors                     |Customer
+|Trigger                    |Ein Customer klickt auf den Warenkorb in der Navigationsleiste.
+|Precondition(s)           a|Der Nutzer ist authentifiziert.
+|Essential Steps           a|
+1.  Customer klickt auf den Warenkorb in der Navigationsleiste.
+2.  Dem Customer werden Inhalt des Warenkorbs, der gesamte Preis, der bei Abholung fällig wird, sowie die Ablaufzeit der Reservierung angezeigt.
+|Extensions                 |-
+|Functional Requirements    | <<F0010>>, <<F0012>>
+|===
+
+[cols="1h,3"]
+[[UC0014]]
+|===
+|ID                         |**<<UC0014>>**
+|Name                       |Bestellungen einsehen
+|Description                |Customer sollen ihre bereits getätigten Bestellungen einsehen können.
+|Actors                     |Customer
+|Trigger                    |Customer klickt auf "Meine Aufträge" in der Navigationsleiste.
+|Precondition(s)           a|Der Nutzer ist authentifiziert.
+|Essential Steps           a|
+1.    Customer klickt auf "Meine Aufträge" in der Navigationsleiste.
+2.    Customer werden alle bisherigen Aufträge samt Status und voraussichtlichem Abholdatum angezeigt.
+|Extensions                 |-
+|Functional Requirements    |
+|===
+
+[cols="1h,3"]
+[[UC0015]]
+|===
+|ID                         |**<<UC0015>>**
+|Name                       |Bestellung stornieren
+|Description                |Customer sollen Bestellungen stornieren können.
+|Actors                     |Customer
+|Trigger                    |Customer klickt auf "Bestellung stornieren".
+|Precondition(s)           a|- Nutzer ist authentifiziert
+- Es wurden bereits Bestellungen bestätigt, die nicht zum Fotolabor gehören oder noch nicht den Status "in Arbeit" haben.
+- Customer befindet sich in "Meine Aufträge".
+|Essential Steps           a|
+1.  Customer klickt auf "Bestellung stornieren" für die zu stornierende Bestellungen.
+2.  Bestellung ändert Status auf "storniert" und (bei Hardware) der Lagerbestand wird wieder inkrementiert.
+|Extensions                 |
+|Functional Requirements    | <<F0016>>, <<F0004>>, <<F0005>>
+|===
+
+[cols="1h,3"]
+[[UC0016]]
+|===
+|ID                         |**<<UC0016>>**
+|Name                       |Fotos vom Fotolabor bestellen und bearbeiten lassen.
+|Description                |Customer sollen Fotos hochladen und bearbeiten lassen können.
+|Actors                     |Customer
+|Trigger                    |Customer klickt auf "Fotos drucken und zuschneiden" in Katalogdetailseite.
+|Precondition(s)           a|- Nutzer ist authentifiziert
+- Customer befindet sich auf der Detailseite des Services "Fotos drucken und zuschneiden"
+|Essential Steps           a|
+1. Customer klickt auf "Fotos drucken und zuschneiden".
+2. Customer lädt gewünschte Fotos hoch.
+3. Customer wählt pro Foto Stückzahl und gewünschte Größe aus.
+4. Customer klickt auf "bestellen".
+|Extensions                 |-
+|Functional Requirements    | <<F0015>>
+|===
+
+[cols="1h,3"]
+[[UC0100]]
+|===
+|ID                         |**<<UC0100>>**
+|Name                       |Bestellungsübersicht einsehen
+|Description                |Employees und Admin sollen die Bestellungen von allen Kunden einsehen können.
+|Actors                     |Employee, Admin
+|Trigger                    |Employee/Admin klickt auf "Bestellungsübersicht".
+|Precondition(s)           a|Nutzer ist authentifiziert und hat die Rolle "Employee" oder "Admin".
+|Essential Steps           a|
+1. Der Employee/Admin klickt auf "Bestellungsübersicht" in der Navigationsleiste.
+2. Alle Bestellungen werden mit Datum, Kunde und Status angezeigt.
+|Extensions                 |-
+|Functional Requirements    | <<F0023>>
+|===
+
+[cols="1h,3"]
+[[UC0101]]
+|===
+|ID                         |**<<UC0101>>**
+|Name                       |Status einer Bestellung ändern.
+|Description                |Employees und Admin sollen den Status einer Bestellung ändern können.
+|Actors                     |Employee, Admin
+|Trigger                    |Employee/Admin klickt auf "Status ändern".
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Employee" oder "Admin".
+- Employee/Admin befindet sich in Bestellungsübersicht.
+|Essential Steps           a|
+1. Der Employee/Admin klickt auf "Status ändern" bei der zu aktualisierenden Bestellung.
+2. Der Employee/Admin wählt den neuen Status (offen, in Arbeit, abholbereit, abgeholt) aus.
+|Extensions                 |-
+|Functional Requirements    | <<F0023>>, <<F0021>>
+|===
+
+
+[cols="1h,3"]
+[[UC0102]]
+|===
+|ID                         |**<<UC0102>>**
+|Name                       |Sammelbestellung abschicken
+|Description                |Employees und Admin sollen Bestellungen für das Fotolabor gesammelt abschicken können.
+|Actors                     |Employee, Admin
+|Trigger                    |Employee/Admin klickt auf "Sammelbestellung abschicken".
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Employee" oder "Admin".
+- Employee/Admin befindet sich in der "Bestellungsübersicht".
+|Essential Steps           a|
+1. Der Employee/Admin klickt auf "Sammelbestellung abschicken" in der Bestellungsübersicht.
+2. Alle noch nicht abgeschickten Bestellungen für das Fotolabor werden abgeschickt: der Status der Bestellungen ändert sich auf "in Arbeit" und die Ausgaben für das Fotolabor erscheinen in der Finanzübersicht.
+|Extensions                 |-
+|Functional Requirements    | <<F0023>>, <<F0024>>, <<F0029>>
+|===
+
+[cols="1h,3"]
+[[UC0103]]
+|===
+|ID                         |**<<UC0103>>**
+|Name                       |Produkte/Services Verwaltung
+|Description                |Admin und Employees sollen Produkte/Services anlegen, bearbeiten und löschen können.
+|Actors                     |Employee, Admin
+|Trigger                    |Employee/Admin wählt im Katalog (für das Produkt) löschen/bearbeiten/anlegen aus.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Employee" oder "Admin".
+- Nutzer befindet sich im Katalog.
+|Essential Steps           a|
+_Bearbeiten_:
+
+1. Employee/Admin klickt im Katalog auf das zu bearbeitende Produkt/Service.
+2. Employee/Admin klickt auf "Bearbeiten".
+3. Maske erscheint, in der Employee/Admin Name, Beschreibung, Preis und Lagerbestand anpassen kann.
+
+_Löschen_:
+
+1. Employee/Admin klickt im Katalog auf das zu bearbeitende Produkt/Service.
+2. Employee/Admin klickt auf "Löschen".
+3. Employee/Admin kehrt zu Katalog zurück und das Produkt/Service ist gelöscht.
+
+_Anlegen_:
+
+1. Employee/Admin klickt im Katalog auf "Neues Produkt" bzw. "Neuen Service anlegen".
+2. Maske erscheint, in der Employee/Admin Name, Beschreibung, Preis und Lagerbestand eingeben kann.
+3. Employee/Admin kehrt zum Katalog zurück und das neue Produkt/Service erscheint im Katalog.
+
+|Extensions                 |-
+|Functional Requirements    | <<F0004>>, <<F0005>>, <<F0006>>, <<F0007>>
+|===
+
+[cols="1h,3"]
+[[UC0104]]
+|===
+|ID                         |**<<UC0104>>**
+|Name                       |Produkte verkaufen
+|Description                |Employees sollen Produkte verkaufen können.
+|Actors                     |Employee, Admin
+|Trigger                    |Employee wählt packt Produkte in den Warenkorb.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Employee".
+|Essential Steps           a|
+1. Der Employee wählt die gewünschte Menge aus. Bei Services wird hier zusätzlich ein Termin ausgewählt.
+2. Der Employee klickt auf "reservieren". Damit werden die Produkte zunächst dem Warenkorb hinzugefügt.
+3. Der Employee klickt auf den Warenkorb in der Navigationsleiste.
+4. Der Employee klickt auf "Kauf abschließen" und verkauft so alle im Warenkorb befindlichen Produkte/Services.
+5. Lagerbestand wird angepasst und Einkünfte zur Finanzübersicht hinzugefügt.
+|Extensions                 |-
+|Functional Requirements    | <<F0010>>, <<F0011>>, <<F0012>>, <<F0014>>, <<F0029>>
+|===
+
+[cols="1h,3"]
+[[UC1000]]
+|===
+|ID                         |**<<UC1000>>**
+|Name                       |Personalliste einsehen
+|Description                |Admin soll Personalliste einsehen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Navigationsleiste "Personalübersicht" aus.
+|Precondition(s)           a|Nutzer ist authentifiziert und hat die Rolle "Admin".
+|Essential Steps           a|
+1. Admin klickt in der Navigationsleiste auf "Personalübersicht".
+2. Es werden alle Mitarbeiter aufgelistet.
+|Extensions                 |-
+|Functional Requirements    | <<F0025>>
+|===
+
+[cols="1h,3"]
+[[UC1001]]
+|===
+|ID                         |**<<UC1001>>**
+|Name                       |Personalverwaltung
+|Description                |Admin soll Personal anlegen, bearbeiten und löschen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Personalübersicht (für das den jeweiligen Mitarbeiter) löschen/bearbeiten/anlegen aus.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in der Personalübersicht.
+|Essential Steps           a|
+_Bearbeiten_:
+
+1. Admin klickt in Personalübersicht auf den zu bearbeitenden Mitarbeiter.
+2. Admin klickt auf "Bearbeiten".
+3. Maske erscheint, in der Admin Name, Stelle, Adresse und Lohn anpassen kann.
+
+_Löschen_:
+
+1. Admin klickt in Personalübersicht auf den zu löschenden Mitarbeiter.
+2. Admin klickt auf "Löschen".
+3. Admin kehrt zu Personalübersicht zurück und der Mitarbeiter ist gelöscht.
+
+_Anlegen_:
+
+1. Admin klickt im Katalog auf "Neuen Mitarbeiter anlegen"..
+2. Maske erscheint, in der Admin Name, Stelle, Adresse, E-Mail und Lohn eingeben kann.
+3. Employee/Admin kehrt zur Personalübersicht zurück und der neue Mitarbeiter ist angelegt.
+
+|Extensions                 |-
+|Functional Requirements    | <<F0025>>, <<F0028>>
+|===
+
+[cols="1h,3"]
+[[UC1002]]
+|===
+|ID                         |**<<UC1002>>**
+|Name                       |Kundenliste einsehen
+|Description                |Admin soll Kundenliste einsehen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Navigationsleiste "Kundenübersicht" aus.
+|Precondition(s)           a|Nutzer ist authentifiziert und hat die Rolle "Admin".
+|Essential Steps           a|
+1. Admin klickt in der Navigationsleiste auf "Kundenübersicht".
+2. Es werden alle Kunden aufgelistet.
+|Extensions                 |-
+|Functional Requirements    | <<F0026>>
+|===
+
+[cols="1h,3"]
+[[UC1003]]
+|===
+|ID                         |**<<UC1003>>**
+|Name                       |Kundenverwaltung
+|Description                |Admin soll Kunden anlegen, bearbeiten und löschen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Kundenübersicht (für das den jeweiligen Kunden) löschen/bearbeiten/anlegen aus.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in der Kundenübersicht.
+|Essential Steps           a|
+_Bearbeiten_:
+1. Admin klickt in Kundenübersicht auf den zu bearbeitenden Kunden.
+2. Admin klickt auf "Bearbeiten".
+3. Maske erscheint, in der Admin Name, Adresse und E-Mail anpassen kann.
+
+_Löschen_:
+1. Admin klickt in Kundenübersicht auf den zu löschenden Kunden.
+2. Admin klickt auf "Löschen".
+3. Admin kehrt zu Kundenübersicht zurück und der Kunde ist gelöscht.
+
+_Anlegen_:
+1. Admin klickt im Katalog auf "Neuen Kunden anlegen"..
+2. Maske erscheint, in der Admin Name, Adresse und E-Mail eingeben kann.
+3. Employee/Admin kehrt zur Kundenübersicht zurück und der neue Kunde ist angelegt.
+|Extensions                 |-
+|Functional Requirements    | <<F0026>>, <<F0027>>
+|===
+
+[cols="1h,3"]
+[[UC1004]]
+|===
+|ID                         |**<<UC1004>>**
+|Name                       |Finanzübersicht einsehen
+|Description                |Admin soll Finanzübersicht einsehen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Navigationsleiste "Finanzübersicht" aus.
+|Precondition(s)           a|Nutzer ist authentifiziert und hat die Rolle "Admin".
+|Essential Steps           a|
+1. Admin klickt in der Navigationsleiste auf "Finanzübersicht".
+2. Es werden alle Ein- und Ausgaben aufgelistet.
+|Extensions                 |-
+|Functional Requirements    | <<F0029>>
+|===
+
+[cols="1h,3"]
+[[UC1005]]
+|===
+|ID                         |**<<UC1005>>**
+|Name                       |Ausgaben manuell eingeben
+|Description                |Admin soll unvorherhergesehe Ausgaben manuell eingeben können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Navigationsleiste "Ausgaben hinzufügen" aus.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in Finanzübersicht.
+|Essential Steps           a|
+1. Admin klickt in der Finazübersicht auf "Ausgaben hinzufügen".
+2. Admin gibt Höhe der Ausgaben, Grund der Ausgabe und Datum ein.
+3. Admin kehrt zur Finanzübersicht zurück und die Ausgabe erscheint in der Übersicht.
+|Extensions                 |-
+|Functional Requirements    | <<F0029>>, <<F0032>>
+|===
+
+[cols="1h,3"]
+[[UC1006]]
+|===
+|ID                         |**<<UC1006>>**
+|Name                       |Löhne auszahlen
+|Description                |Admin soll gesammelt alle Löhne auszahlen können.
+|Actors                     |Admin
+|Trigger                    |Admin wählt in der Finanzübersicht "Löhne zahlen" aus.
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in der Finanzübersicht.
+|Essential Steps           a|
+1. Admin klickt in der Finanzübersicht auf "Löhne zahlen".
+2. Die gezahlten Löhne erscheinen als Ausgaben in der Finanzübersicht.
+|Extensions                 |-
+|Functional Requirements    | <<F0029>>, <<F0030>>
+|===
+
+[cols="1h,3"]
+[[UC1007]]
+|===
+|ID                         |**<<UC1007>>**
+|Name                       |Finanzübersicht nach Datum filtern
+|Description                |Admin soll Aus-/Eingaben für ein bestimmtes Datum einfach einsehen können.
+|Actors                     |Admin
+|Trigger                    |Admin klickt in der Finanzübersicht bei "Datum" ein Datum ein und klickt auf "nach Datum filtern".
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in der Finanzübersicht.
+|Essential Steps           a|
+1. Admin gibt in der Finanzübersicht ein Datum ein und klickt auf "nach Datum filtern".
+2. Es werden alle Ein- und Ausgaben für dieses Datum aufgelistet.
+|Extensions                 |-
+|Functional Requirements    | <<F0029>>, <<F0031>>
+|===
+
+[cols="1h,3"]
+[[UC1007]]
+|===
+|ID                         |**<<UC1007>>**
+|Name                       |Bearbeitungspreis für Fotolabor anpassen
+|Description                |Admin soll Bearbeitungspreis für Fotos fürs Fotolabor festlegen und ändern können.
+|Actors                     |Admin
+|Trigger                    |Admin klickt in der Finanzübersicht auf "Bearbeitungspreis Fotolabor"
+|Precondition(s)           a|- Nutzer ist authentifiziert und hat die Rolle "Admin".
+- Admin befindet sich in der Finanzübersicht.
+|Essential Steps           a|
+1. Admin klickt in der Finanzübersicht auf "Bearbeitungspreis Fotolabor":
+2. Es öffnet sich eine Maske bei der der Admin die Preise für alle Größen einstellen kann.
+|Extensions                 |-
+|Functional Requirements    | <<F0029>>, <<F0032>>
+|===
+
+== Funktionale Anforderungen
+
+[[anchor-9]]
+=== Muss-Kriterien
+Was das zu erstellende Programm auf alle Fälle leisten muss.
+
+[options="header", cols="2h, 1, 3, 12"]
+|===
+|ID
+|Version
+|Name
+|Beschreibung
+
+|[[F0001]]<<F0001>>
+|v0.1
+|Authentifizierung
+a|
+Das System soll geteilt sein in Bereiche/Funktionen, die von allen nutzbar sind und Bereiche/Funktionen, die nur authentifizierten Usern (Customers) zur Verfügung stehen.
+Wenn ein User im System existiert, soll er die Möglichkeit haben sich zu authentifizieren, indem er folgende Informationen angibt:
+
+* Username
+* Passwort
+
+|[[F0002]]<<F0002>>
+|v0.1
+|Registrierung
+a|
+Das System soll einem unauthentifizierten User (<<F0001>>) die Möglichkeit bieten sich zu registrieren, indem er auf "Registrieren" klickt und folgende Daten angibt:
+
+* Username (unique)
+* Password
+* Adresse
+* E-Mail
+* Telefon
+
+Das System soll die angegebenen Daten validieren. (<<F0003>>).
+Der User soll nach erfolgreicher Validierung als Customer im System registriert sein und ihm vorher unzugängliche Funktionen nutzen können (<<F0001>>).
+
+|[[F0003]]<<F0003>>
+|v0.1
+|Registrierung validieren
+a|
+Das System soll die Daten eines unregistrierten Users bei der Registrierung (<<F0002>>) validieren. Dabei wird überprüft, ob der Username bereits vergeben ist. Falls dies der Fall ist, soll eine Fehlermeldung erscheinen.
+
+|[[F0004]]<<F0004>>
+|v0.1
+|Inventar
+a|
+Das System soll ständig Daten über die Produkte in einem Inventar speichern können.
+
+|[[F0005]]<<F0005>>
+|v0.1
+|Bestand anpassen
+a|
+Das System soll den Lagerbestand eines Produktes anpassen können.
+
+|[[F0006]]<<F0006>>
+|v0.1
+|Katalog
+a|
+Das System soll einen read-only access für bestehende Produkte (<<F0004>>)) durch einen Katalog bereitstellen.
+
+|[[F0007]]<<F0007>>
+|v0.1
+|Katalog ansehen
+a|
+Das System soll Nutzern die Möglichkeit geben den Inhalt des Kataloges zu betrachten.
+
+|[[F0008]]<<F0008>>
+|v0.1
+|Katalog filtern
+a|
+Das System soll den Nutzern die Möglichkeit geben den Katalog nach Hardware-Produkten und Services zu filtern.
+
+|[[F0009]]<<F0009>>
+|v0.1
+|Produktdetails ansehen
+a|
+Das System soll den Nutzern die Möglichkeit geben die Details eines bestimmten Produktes oder Services einzusehen nachdem er darauf geklickt hat.
+Folgende Details sollen angezeigt werden:
+
+* Name des Produktes/Services
+* Bild des Produktes/Services
+* Beschreibung des Produktes/Services
+* Preis des Produktes/Services
+* Für Produkte: Lagerbestand
+
+|[[F0010]]<<F0010>>
+|v0.1
+|Warenkorb
+a|
+Jeder registrierte Nutzer soll einen eigenen Warenkorb haben, in dem er zeitweise Produkte/Services lagern kann, die er reservieren möchte.
+
+|[[F0011]]<<F0011>>
+|v0.1
+|Produkt zu Warenkorb hinzufügen
+a|
+Das System soll es registrierten Nutzern ermöglichen Produkte und Services in gewünschter Menge ihrem Warenkorb (<<F0010>>) hinzuzufügen. Daraufhin soll ein Eintrag in ihrem Warenkorb kreiert werden.
+Bei dem Versuch etwas dem Warenkorb hinzuzufügen, soll zunächst validiert werden (<<F0017>>), ob die Items in gewünschter Menge vorhanden sind.
+
+|[[F0012]]<<F0012>>
+|v0.1
+|Warenkorb einsehen
+a|
+Das System soll es dem registrierten Nutzer ermöglichen den Inhalt seines Warenkorbs (<<F0010>>) einzusehen.
+Die Warenkorbliste soll pro Item folgendes enthalten:
+
+* Name des Produktes
+* Menge der Produkte
+* Preis des Produktes
+* gewählten Termin (bei Services)
+
+und außerdem:
+
+* Gesamtpreis aller Produkte
+
+|[[F0013]]<<F0013>>
+|v0.1
+|Inhalt des Warenkorbs bearbeiten
+a|
+Das System soll es dem registrierten Nutzer ermöglichen den Inhalt des Warenkorbes zu bearbeiten (Items löschen und Quantität ändern).
+
+|[[F0014]]<<F0014>>
+|v0.1
+|Bestellung/Reservierung tätigen
+a|
+Das System soll registrierten Nutzern die Möglichkeit bieten den Inhalt Ihres Warenkorbes endgültig zu reservieren.
+Nach der Reservierung soll ein Eintrag in der Bestellübersicht des Nutzers ("Meine Aufträge"), sowie der Übersicht aller Bestellungen (<<F0016>>) angelegt werden und ein Abholschein ausgestellt werden.
+
+|[[F0015]]<<F0015>>
+|v0.1
+|Fotos zur Bearbeitung in Auftrag geben
+a|
+Das System soll es Kunden ermöglichen Fotos hochzuladen, um sie drucken und zuschneiden zu lassen. Dabei soll die gewünschte Menge und Größe angebbar sein.
+
+|[[F0016]]<<F0016>>
+|v0.1
+|Bestellung/Reservierung widerrufen
+a|
+Das System soll es registrierten Nutzern ermöglichen ihre Bestellungen/Reservierungen zu widerrufen, solange sie den Status "offen" haben.
+
+|[[F0017]]<<F0017>>
+|v0.1
+|Lagerbestand validieren
+a|
+Das System soll validieren können, ob der Lagerbestand eines Produktes der vom Kunden gewünschten Menge entspricht (bzw. übersteigt).
+
+|[[F0018]]<<F0018>>
+|v0.1
+|Bestellung
+a|
+Das Systems soll Bestellungen ständig speichern können.
+
+|[[F0019]]<<F0019>>
+|v0.1
+|Bestellung erstellen
+a|
+Das System soll eine Bestellung aus dem Inhalt des Warenkorbes kreieren können. Diese werden in der Bestellübersicht des Kundens und der Gesamtbestellübersicht der Mitarbeiter gespeichert.
+Sie soll mit dem Status "offen" initialisiert werden.
+Die Bestellung beinhaltet folgendes:
+
+* Name des Kunden
+* Produkte
+* Preis
+* Status
+* voraussichtliches Abholdatm
+* Abholschein
+
+|[[F0020]]<<F0020>>
+|v0.1
+|Bestellung archivieren
+a|
+Das System soll Mitarbeitern die Möglichkeit bieten den Status einer Bestellung auf "abgeholt" zu ändern. Dadurch soll ein Eintrag in der Finanzübersicht (<<F0029>>) erstellt werden.
+
+|[[F0021]]<<F00021>>
+|v0.1
+|Status einer Bestellung ändern
+a|
+Das System soll Mitarbeitern die Möglichkeit geben den Status einer Bestellung zu ändern. Mögliche Statu sind:
+
+* offen
+* in Arbeit
+* abholbereit
+* abgeholt
+
+|[[F0022]]<<F0022>>
+|v0.1
+|Produkte/Services bearbeiten
+a|
+Das System soll es Mitarbeitern ermöglichen Produkte/Services anzulegen, zu bearbeiten und zu löschen.
+
+|[[F0023]]<<F0023>>
+|v0.1
+|Bestellübersicht einsehen
+a|
+Mitarbeiter sollen die Möglichkeit haben eine Liste aller Bestellungen einzusehen.
+
+|[[F0024]]<<F0024>>
+|v0.1
+|Sammelbestellung aufgeben
+a|
+Das System soll es Mitarbeitern ermöglichen eine Sammelbestellung für alle Bestellungen, die an das Fotolabor gehen, abzschicken. Diese soll als Ausgabe der Finanzübersicht (<<F0029>>) hinzugefügt werden und der Status der betroffenen Bestellungen soll sich in der Bestellübersicht der Kunden und der gesamten Bestellübersicht auf "in Arbeit" ändern.
+
+|[[F0025]]<<F0025>>
+|v0.1
+|Personalliste ansehen
+a|
+Das System soll es dem Admin ermöglichen eine Liste aller Mitarbeiter einzusehen, die folgende Informationen beinhaltet:
+
+* Name
+* Adresse
+* Stelle
+* Lohn
+* E-Mail
+* Telefonnummer
+
+|[[F0026]]<<F0026>>
+|v0.1
+|Kundenliste ansehen
+a|
+Das System soll es dem Admin ermöglichen eine Liste aller Mitarbeiter einzusehen, die folgende Informationen beinhaltet:
+
+* Name
+* Adresse
+* E-Mail
+* Telefonnummer
+
+|[[F0027]]<<F0027>>
+|v0.1
+|Kunden bearbeiten
+a|
+Das System soll es dem Admin ermöglichen Kunden in der Kundenübersicht anzulegen, zu löschen und zu bearbeiten.
+
+|[[F0028]]<<F0028>>
+|v0.1
+|Personal bearbeiten
+a|
+
+Das System soll es dem Admin ermöglichen Mitarbeiter in der Personalübersicht anzulegen, zu löschen und zu bearbeiten.
+
+|[[F0029]]<<F0029>>
+|v0.1
+|Finanzübersicht
+a|
+Das System soll es dem Admin ermöglichen eine Übersicht über die Finanzen einzusehen. Diese soll alle Ein- und Ausgaben beinhalten.
+
+|[[F0030]]<<F0030>>
+|v0.1
+|Löhne zahlen
+a|
+Das System soll es dem Admin ermöglichen durch einen Button alle Löhne an die Mitarbeiter als ausgezahlt zu markieren. Diese werden daraufhin als Einträge der Finanzübersicht (<<F0029>>) hinzugefügt werden.
+
+|[[F0031]]<<F0031>>
+|v0.1
+|Finanzen nach Datum filtern
+a|
+Das System soll es dem Admin ermöglichen Ein- und Ausgaben in der Finanzübersicht (<<F0029>>) nach Datum zu filtern.
+
+|[[F0032]]<<F0032>>
+|v0.1
+|Ausgaben manuell eingeben
+a|
+Das System soll es dem Admin ermöglichen Ausgaben manuell der Finanzübersicht (<<F0029>>) hinzuzufügen. Diese sollen folgende Informationen beinhalten:
+
+* Datum
+* Höhe der Ausgaben
+* Grund der Ausgaben
+
+|[[F0033]]<<F0033>>
+|v0.1
+|Bearbeitungspreis Fotolabor
+a|
+Der Admin soll den Bearbeitungspreis pro Foto bei Bestellungen an das Fotolabor festlegen können.
+|===
+
+[[anchor-10]]
+=== Kann-Kriterien
+Anforderungen die das Programm leisten können soll, aber für den korrekten Betrieb entbehrlich sind.
+
+[options="header", cols="2h, 1, 3, 12"]
+|===
+|ID
+|Version
+|Name
+|Beschreibung
+
+|[[F0100]]<<F0100>>
+|v0.1
+|Roles
+a|
+Das System soll Roles für die Rechtezuweisung nutzen (User, customer, employee, admin).
+
+|[[F0102]]<<F0102>>
+|v0.1
+|File-Upload
+a|
+Das System soll einen funktionierenden File-Upload beinhalten, durch den Kunden ihre Fotos hochladen und zur Bearbeitung ans Fotolabr weiterschicken können.
+
+|[[F0103]]<<F0103>>
+|v0.1
+|Kalender
+a|
+Das System soll einen Kalender beinhalten, der belegte Termine speichert und von Kunden genutzt werden kann, um Services zu buchen.
+
+|===
+
+- funktionierender File-Upload
+- Kalender für die Terminverwaltung
+- roles für Rechtezuweisung nutzen
+
+== Nicht-Funktionale Anforderungen
+
+[[anchor-11]]
+=== Qualitätsziele
+
+
+Um die Qualität unsere Application zu evaluieren, hat sich unser Team auf einige zu erfüllende Qualitätsziele geeinigt. Die folgenden Beschreibungen sind aus https://iso25000.com/index.php/en/iso-25000-standards/iso-25010[ISO/IEC 25010 Software Quality Model^] deriviert.
+
+Wartbarkeit (Maintainability)::
+Dieses Merkmal gibt den Grad an Effektivität und Effizienz an, womit ein Produkt oder System modifiziert werden kann, um es zu verbessern, zu korrigieren oder an Änderungen in der Umgebung und in den Anforderungen anzupassen.
+
+Benutzbarkeit (Usability)::
+Inwieweit ein Produkt oder System verwendet werden kann, um bestimmte Ziele in einem bestimmten Kontext mit Effektivität, Effizienz und Zufriedenheit zu erreichen. 
+
+Sicherheit (Security)::
+Grad des Schutzes von Informationen und Daten durch ein Produkt oder System, damit Personen oder andere Produkte oder Systeme über den Datenzugriff verfügen, der für ihre Art und ihre Berechtigungsstufe angemessen ist.
+
+Die folgende Tabelle zeigt welche Qualitätsziele erfüllt werden müssen. Jedes der von uns ausgewählten Qualitätsziele hat eine gewisse Priorität bezüglich seiner Wesenheit für das Software.
+
+1 = Nicht so wichtig ..
+5 = Wichtiger
+[options="header", cols="3h, ^1, ^1, ^1, ^1, ^1"]
+|===
+|Quality Demand           | 1 | 2 | 3 | 4 | 5
+|Wartbarkeit          |   |   |   | x |
+|Benutzbarkeit                |   |   |  | x |
+|Sicherheit                 |   |   | x |  |
+|===
+
+
+[[anchor-12]]
+=== Konkrete Nicht-Funktionale Anforderungen
+
+
+:desired-uptime: 99,5%
+
+[options="header", cols="2h, 1, 3, 12"]
+|===
+|ID
+|Version
+|Name
+|Description
+
+|[[NF0010]]<<NF0010>>
+|v0.1
+|Benutzbarkeit-Human friendly interface
+a|
+Größe Toleranz an Fehler, eindeutige Beschriftung von Buttons, Navigation und Labels.
+
+|[[NF0020]]<<NF0020>>
+|v0.1
+|Wartbarkeit 
+a|
+Gründliche  Dokumentation, änderbare Architektur, sauberer Quellcode.
+
+|[[NF0021]]<<NF0021>>
+|v0.1
+|Wartbarkeit - uptime
+a|
+Das System soll mindestens 99,5% uptime erzielen.
+
+|[[NF0030]]<<NF0030>>
+|v0.1
+|Sicherheit - Password storage
+a|
+Passwords müssen verschlüsselt sein
+|===
+
+== GUI Prototyp
+
+In diesem Kapitel soll ein Entwurf der Navigationsmöglichkeiten und Dialoge des Systems erstellt werden.
+Idealerweise entsteht auch ein grafischer Prototyp, welcher dem Kunden zeigt, wie sein System visuell umgesetzt werden soll.
+Konkrete Absprachen - beispielsweise ob der grafische Prototyp oder die Dialoglandkarte höhere Priorität hat - sind mit dem Kunden zu treffen.
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/1-Hardware.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/2-Reservations.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/3-Pricing.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/4-Upload.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/5-admin_welcome.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/6-admin_employee_op.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/7-admin_financial_op.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/8-admin_order_op.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/9-Shopping_Cart.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/10-Login.png[GitHub mascot]
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/GUI/pages/11-Register.png[GitHub mascot]
+
+[[anchor-13]][[anchor-14]]
+=== Überblick: Dialoglandkarte / Dialogbeschreibung
+Erstellen Sie ein Übersichtsdiagramm, das das Zusammenspiel Ihrer Masken zur Laufzeit darstellt. Also mit welchen Aktionen zwischen den Masken navigiert wird.
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/dialogue_map.svg[GitHub mascot]
+
+== Datenmodell
+
+[[anchor-15]]
+=== Überblick: Klassendiagramm
+UML-Analyseklassendiagramm
+
+image::https://github.com/st-tu-dresden-praktikum/swt19w47/blob/analysis/src/main/asciidoc/models/analysis/Analyse_Klassendiagramm.png[GitHub mascot]
+
+[[anchor-16]]
+=== Klassen und Enumerationen
+Dieser Abschnitt stellt eine Vereinigung von Glossar und der Beschreibung von Klassen/Enumerationen dar. Jede Klasse und Enumeration wird in Form eines Glossars textuell beschrieben. Zusätzlich werden eventuellen Konsistenz- und Formatierungsregeln aufgeführt.
+
+// See http://asciidoctor.org/docs/user-manual/#tables
+[options="header"]
+|===
+|Klasse/Enumeration |Beschreibung |
+|Admin | Der Admin ist ein Employee mit speziellen Rechten, der für die verschiedenen Management-Bereiche verantwortlich ist und somit auch Zugriff auf die Register von Customers und Employees hat.            |
+|AppointmentManagement    | Das Appointment Management liefert eine Übersicht über gebuchte Servicetermine. |
+|Authentification | Die Authentification enthält die Anmelde-Daten der Users.            |
+|Catalog          | Der Catalog speichert alle Product-Typen des Fotoateliers sowie deren Bestandszahl.           |
+|Customer | Ein Customer ist ein möglichr Typ eines Users, welcher die angebotenen Produkte des Fotoateliers nutzt.            |
+|CustomerManager | Ein Customer Manager stellt ein Register aller Customers dar.             |
+|Employee | Ein Employee ist ein möglicher Typ eiens Users, welcher im Fotoatelier angestellt ist und Kundenaufträge ausführt.|
+|EmployeeManagement | Ein Employee Management stellt ein Register aller Employees dar.             |
+|ExternalService | Ein External Service ist ein Typ eines Products, welches nicht direkt im Fotoatelier, sondern von einem externen Fotolabor realisiert wird.           |
+|FinanceManager | Der Financemanager liefert eine Übersicht über alle Einnahmen und Ausgaben des Fotoateliers.            |
+|Hardware | Eine Hardware ist ein spezieller Typ eines Products, welches mit einer bestimmten Anzahl (stock) im Catalog repräsentiert ist.             |
+|Order |Eine Order wird verwendet, um alle Products, die ein Employee oder Customer zu einem Zeitpunkt bestellt, gebündelt darzustellen.             |
+|OrderService | Ein Order Service liefert eine Übersicht über alle getätigten Orders, die nur vom Admin eingesehen werden kann.            |
+|Product | Ein Product ist eine abstrakte Repräsentation der verschiedenen Angebote des Fotoateliers.             |
+|Service | Ein Service ist ein Typ eines Products des Fotoateliers, der für einen bestimmten Zeitpunkt gebucht werden kann. Die Servicebuchungen werden im Appointment-Manager verwaltet.|
+|ShoppingCart | Ein Shopping Cart ist eine Klasse, in der eine Übersicht über alle Products, die ein Customer/ Employee zu kaufen indentiert, erstellt werden kann. |
+|ShoppingCartObjects | Shopping Cart Objects repräsiert alle Products, die ein Customer/ Employee zu seinem Shopping Cart hinzugefügt hat.             |
+|StockManager | Der Stock Manager liefert eine Übersicht über die verfügbare Anzahl aller Produktarten des Videoshops.     |
+|Transaction | Eine Transaktion stellt eine Eingabe/ Ausgabe des Fotoateliers dar.            |
+| User | Ein User ist eine generelle Repräsentation einer realen Person, welche mit dem System interagiert. Diese Repräsentation dient für noch nicht registierte Personen.      |
+|Voucher |Ein Voucher ermöglicht die Identifikation einer Order. Hierzu dient eine Ordernumber.|
+|VoucherManager | Der Order Manager liefert eine Übersicht über alle Vouchers.             |
+|===
+
+[[anchor-17]]
+== Akzeptanztestfälle
+Mithilfe von Akzeptanztests wird geprüft, ob die Software die funktionalen Erwartungen und Anforderungen im Gebrauch erfüllt. Diese sollen und können aus den Anwendungsfallbeschreibungen und den UML-Sequenzdiagrammen abgeleitet werden. D.h., pro (komplexen) Anwendungsfall gibt es typischerweise mindestens ein Sequenzdiagramm (welches ein Szenarium beschreibt). Für jedes Szenarium sollte es einen Akzeptanztestfall geben. Listen Sie alle Akzeptanztestfälle in tabellarischer Form auf.
+Jeder Testfall soll mit einer ID versehen werde, um später zwischen den Dokumenten (z.B. im Test-Plan) referenzieren zu können.
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0001>>
+|Use Case      |<<UC0001>>
+|{Pre}        a|Das System hat existierende Kunden (registrierte User).
+|{Event}      a|Ein unauthentifizierter User möchte weitere Funktionen der Website nutzen und klickt auf "Login". Er gibt Nutzername und Passwort korrekt ein.
+|{Result}     a|
+- Der User ist nun als [Username].
+- Er wird zu einer personalisierten Wilkommensseite weitergeleitet, die ihn mit seinem Namen begrüßt.
+- TEr kann nun alle Funktionen nutzen, die mit der Rolle "Customer" nutzbar sind.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0002>>
+|Use Case      |<<UC0001>>
+|{Pre}        a|Ein eingeloggter User benutzt das System.
+|{Event}      a|Der eingeloggte User (Customer) klickt auf "Logout".
+|{Result}     a|
+- Er wird ausgeloggt.
+- Er kann nur noch eingeschränkte Funktionalität des Programms nutzen. Also nur die Funktionen, die für "User" zugägnlich sind.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0003>>
+|Use Case      |<<UC0001>>
+|{Pre}        a|Ein unauthentifizierter User benutzt das System.
+|{Event}      a|Ein unauthentifizierter User möchte weitere Funktionen der Website nutzen und klickt auf "Login". Er gibt Nutzername und Passwort inkorrekt ein.
+|{Result}     a|
+- Der User bleibt weiterhin unauthentifiziert.
+- Es erscheint eine Fehlermeldung: "Nutzername oder Passwort falsch eingegeben. Bitte versuchen Sie es erneut.".
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0004>>
+|Use Case      |<<UC0002>>
+|{Pre}        a|Ein unauthentifizierter User benutzt das System.
+|{Event}      a|Ein unauthentifizierte User klickt auf "Registrieren" in der Navigationsleiste und gibt folgende Daten ein:
+
+- _Nutzername:_ kunde
+- _Passwort:_ 123
+- _Name_: Max Mustermann
+- _Adresse:_ Mustermannstraße 12, 01277 Dresden
+- _E-Mail:_ muster@mustermann.de
+- _Telefonnummer:_ 0123456789
+
+Danach drückt er auf "Registrieren".
+|{Result}     a|
+- Ein neuer Nutzer mit den angegebenen Daten wird kreiert.
+- Ein neuer Eintrag in der Kundenübersicht wird vom System erstellt.
+- Max wird auf eine personalisierte Wilkommensseite weitergeleitet und begrüßt.
+- Max kann nun alle Funktionen nutzen, die mit der Rolle "Customer" nutzbar sind.
+|===
+
+[cols="1h, 4"]
+[[AT0100]]
+|===
+|ID            |<<AT0005>>
+|Use Case      |<<UC0002>>
+|{Pre}        a|- Ein unauthentifizierter User benutzt das System.
+- Das System hat existierende Kunden (registrierte User). Hier als Beispiel mit dem Usernamen: kunde.
+|{Event}      a|Ein unauthentifizierte User klickt auf "Registrieren" in der Navigationsleiste und gibt folgende Daten ein:
+
+- _Nutzername:_ kunde
+- _Passwort:_ passwort
+- _Name_: Peter Muster
+- _Adresse:_ Mustermannstraße 34, 01277 Dresden
+- _E-Mail:_ petermuster@mustermann.de
+- _Telefonnummer:_ 0123433389
+
+Danach drückt er auf "Registrieren".
+|{Result}     a|
+- Eine Fehlermeldung erscheint: "Dieser Nutzername existiert bereits. Bitte wählen Sie einen anderen.".
+|===
+
+[cols="1h, 4"]
+[[AT0101]]
+|===
+|ID            |<<AT0006>>
+|Use Case      |<<UC0010>>
+|{Pre}        a|Ein User benutzt das System.
+|{Event}      a|Der User klickt auf "Produkte/Services" in der Navigationsleiste.
+|{Result}     a|Dem User wird eine Liste aller Produkte und Services angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0007>>
+|Use Case      |<<UC0011>>
+|{Pre}        a|Ein User benutzt das System und befindet sich im Katalog.
+|{Event}      a|Der User klickt auf ein Produkt im Katalog.
+|{Result}     a|Eine neue Seite öffnet sich und dem User werden die Details des Produktes/Services angezeigt (wie in <<F0009>> spezifiziert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0008>>
+|Use Case      |<<UC0103>>
+|{Pre}        a|Ein Admin oder Employee nutzt das System und befindet sich auf der Seite eines Produktes/ Services, welche Informationen zu diesem enthält.
+|{Event}      a|Der Admin/ Employee klickt auf einen Button mit der Aufschrift "Produkt löschen".
+|{Result}     a|Der Admin/ Employee gelangt zur Produktübersicht (Katalog). Das gelöschte Produkt ist nun nicht mehr darin enthalten.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0009>>
+|Use Case      |<<UC1003>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich auf der Seite eines Kundeneintrages.
+|{Event}      a|Der Admin wählt einen Button mit der Aufschrift "Kunden entfernen".
+|{Result}     a|Der Admin gelangt zur Kundenübersicht. Der entfernte Kunde ist nun nicht mehr darin enthalten.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0010>>
+|Use Case      |<<UC1001>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich auf der Seite der Mitarbeiterübersicht.
+|{Event}      a|Der Admin wählt einen Button mit der Aufschrift "Mitarbeiter hinzufügen" und gibt folgende Daten ein - _Nutzername:_ kunde
+- _Passwort:_ passwort
+- _Name_: Peter Muster
+- _Adresse:_ Mustermannstraße 34, 01277 Dresden
+- _E-Mail:_ petermuster@mustermann.de
+- _Telefonnummer:_ 0123433389.
+|{Result}     a|Der Admin gelangt auf die Seite des neu angelegten Mitarbeiters.
+
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0011>>
+|Use Case      |<<UC0013>>
+|{Pre}        a|Ein User benutzt das System.
+|{Event}      a|der User klickt in der Navigationsleiste auf das Warenkorb-Symbol.
+|{Result}     a|Dem User werden alle Elemente, die sich im Warenkorb befinden, angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0012>>
+|Use Case      |<<UC0010>>
+|{Pre}        a|Ein User benutzt das System.
+|{Event}      a|Der User klickt in der Navigationsleiste auf den Katalog.
+|{Result}     a|Dem User werden alle Elemente, die nicht vergriffen sind, angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0013>>
+|Use Case      |<<UC0013>>
+|{Pre}        a|Ein Kunde benutzt das System. Der Kunde hat bereits nach Produkten gestöbert und diese dem Warenkorb hinzugefügt.
+|{Event}      a|Er lässt sich seinen Warenkorb anzeigen.
+|{Result}     a|Dem Kunden werden alle Produkte, die er zuvor dem Warenkorb hinzugefügt hat, angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0014>>
+|Use Case      |<<UC0104>>
+|{Pre}        a|Ein Kunde benutzte das System um einen Service zu reservieren. Einen Voucher hat er bereits erhalten und er befindet sich im Shop.
+|{Event}      a|Der Kunde bezahlt den reservierten Service an der Kasse.
+|{Result}     a|Es wird ein Eintrag für den Termin in der Terminverwaltung hinterlegt und den Voucher-Status (Bestellungsstatus) aktualisiert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0015>>
+|Use Case      |<<UC0012>>
+|{Pre}        a|Ein Kunde benutzt das System. Er hat bereits einige Produkte im Warenkorb und befindet sich auf der Übersichtsseite des Warenkorbs.
+|{Event}      a|Der Kunde löst durch einen klick auf den Butten die Reservierung aus.
+|{Result}     a|Es wird ein Voucher und eine Bestellung erzeugt. Der Lagerbestand wird entsprechend des Warenkorbs angepasst.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0016>>
+|Use Case      |<<UC0013>>
+|{Pre}        a|Ein Kunde benutzt das System. Er hat bereits einige Produkte im Warenkorb und befindet sich auf der Übersichtsseite des Warenkorbs.
+|{Event}      a|Der Kunde löscht durch einen klick auf den Butten das Produkt aus dem Warenkorb.
+|{Result}     a|Das Produkt wird aus dem Warenkorb entfernt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0017>>
+|Use Case      |<<UC0014>>
+|{Pre}        a|Ein Kunde benutzt das System. Er hat bereits eine Bestellung getätigt.
+|{Event}      a|Der Kunde klickt auf den reiter Bestellungsübersicht.
+|{Result}     a|Dem Kunden werden seine getätigten Bestellungen angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0018>>
+|Use Case      |<<UC0015>>
+|{Pre}        a|Ein Kunde benutzt das System. Er hat bereits eine Bestellung getätigt und befindet sich auf der Bestellungsübersicht.
+|{Event}      a|Er klickt auf den Button Bestellung löschen.
+|{Result}     a|Die gelöscht Bestellung wird entfernt. Der Voucher-Status wird aktualisiert und der Lagerbestand angepasst.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0019>>
+|Use Case      |<<UC0101>>
+|{Pre}        a|Ein Employee/Admin nutzt das System und befindet sich auf Bestellungsübersicht.
+|{Event}      a|Der Employee/Admin klickt auf "Status ändern" bei der zu aktualisierenden Bestellung und wählt den neuen Status (offen, in Arbeit, abholbereit, abgeholt) aus.
+|{Result}     a|Die Seite wird aktualisiert mit den neuen Daten. Bestellung wird entfernt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0020>>
+|Use Case      |<<UC1002>>
+|{Pre}        a|Ein Employee/Admin nutzt das System und befindet sich in Bestellungsübersicht.
+|{Event}      a|Der Employee/Admin klickt auf "Sammelbestellung abschicken".
+|{Result}     a|Bestellungen für das Fotolabor werden abgeschickt.
+Status von abgeschickten Bestellungen wird auf "in Arbeit" eingestellt.
+Die Ausgaben für das Fotolabor erscheinen in der Finanzübersicht
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0021>>
+|Use Case      |<<UC0102>>
+|{Pre}        a|Ein Employee/Admin nutzt das System und befindet sich in Bestellungsübersicht.
+|{Event}      a|Der Employee/Admin klickt auf "Kundenübersicht" aus der Navigationsliste.
+|{Result}     a|Alle Kunden werden aufgelistet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0022>>
+|Use Case      |<<UC1004>>
+|{Pre}        a|Ein Admin nutzt das System.
+|{Event}      a|Der Admin klickt auf "Finanzübersicht" aus der Navigationsliste.
+|{Result}     a|Es werden alle Ein- und Ausgaben aufgelistet.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0023>>
+|Use Case      |<<UC1006>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich in Finanzübersicht.
+|{Event}      a|Der Admin klickt auf "Löhne auszahlen".
+|{Result}     a|Die gezahlte Löhne erscheinen als Ausgaben in der Finanzübersicht.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0024>>
+|Use Case      |<<UC1000>>
+|{Pre}        a|Ein Admin nutzt das System.
+|{Event}      a|Der Admin klickt in der Navigation auf den Reiter Mitarbeiter.
+|{Result}     a|Ihm wird eine Liste seiner Mitarbeiter angezeigt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0025>>
+|Use Case      |<<UC1001>>
+|{Pre}        a|Ein Admin nutzt das System. Der Admin klickte in der Navigation auf den Reiter Mitarbeiter.
+|{Event}      a|Der Admin klickt bei einem Mitarbeiter auf 'löschen'.
+|{Result}     a|Der Mitarbeiter wird nach Abfrage einer Bestätigung entfernt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0026>>
+|Use Case      |<<UC1005>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich in Finanzübersicht.
+|{Event}      a|Der Admin klickt auf "Transaktion erstellen".
+|{Result}     a|Dem Admin wird eine Eingabeseite präsentiert, auf der er Informationen zur gewünschten Transaktion eingeben kann um eine Transaktion zu erstllen.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0027>>
+|Use Case      |<<UC1007>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich in Finanzübersicht.
+|{Event}      a|Der Admin klickt auf "Filtern nach" und wählt einen Filter aus.
+|{Result}     a|Dem Admin werden nun nurnoch Transaktionen angezeigt, die dem Filter entsprechen.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0028>>
+|Use Case      |<<UC0103>>
+|{Pre}        a|Ein Mitarbeiter nutzt das System und befindet sich in Lagerübersicht(Catalog).
+|{Event}      a|Der Mitarbeiter klickt auf "Bestand anpassen", trägt einen einen Bestand ein und bestätigt.
+|{Result}     a|Der Bestand des Produkts im Lager wied entsprechend der Eingabe angepasst.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0029>>
+|Use Case      |<<UC0103>>
+|{Pre}        a|Ein Mitarbeiter nutzt das System und befindet sich in Produktübersicht(Catalog).
+|{Event}      a|Der Mitarbeiter klickt auf "Produkt anlegen", trägt die benötigten Informationen ein und bestätigt.
+|{Result}     a|Der Bestand wird um das Produkts erweitert, sofern dies nicht bereits existiert.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0030>>
+|Use Case      |<<UC0103>>
+|{Pre}        a|Ein Mitarbeiter nutzt das System und befindet sich in Produktübersicht(Catalog).
+|{Event}      a|Der Mitarbeiter klickt auf "Produkt bearbeiten", trägt die benötigten Informationen ein und bestätigt.
+|{Result}     a|Das Produkt wird passend zu den neuen Informationen angepasst.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0031>>
+|Use Case      |<<UC1007>>
+|{Pre}        a|Ein Admin nutzt das System und befindet sich in Finanzübersicht.
+|{Event}      a|Der Admin klickt auf "filtern nach" und wählt ein Datum aus.
+|{Result}     a|Die Transaktionen von diesem Tag erscheinen als Ausgaben in der Finanzübersicht.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0032>>
+|Use Case      |<<UC0016>>
+|{Pre}        a|Ein Kunde nutzt das System und befindet sich im Cataloge. Er hat sich bereits für einen Service entschieden und diesen ausgewählt.
+|{Event}      a|Der Kunde klickt auf "Fotos hochladen" und wählt seine Bilder aus.
+|{Result}     a|Die Fotos werden hochgeladen und dem Auftrag angehängt.
+|===
+
+[cols="1h, 4"]
+|===
+|ID            |<<AT0033>>
+|Use Case      |<<UC0011>>
+|{Pre}        a|Ein Kunde nutzt das System und befindet sich im Cataloge.
+|{Event}      a|Der Kunde klickt auf "filtern nach" und wählt einen Filter aus.
+|{Result}     a|Nur die Produkte, die zum Filter passen werden dem Kunden angezeigt.
+|===
+
+[[anchor-18]]
+== Glossar
+Sämtliche Begriffe, die innerhalb des Projektes verwendet werden und deren gemeinsames Verständnis aller beteiligten Stakeholder essentiell ist, sollten hier aufgeführt werden.
+Insbesondere Begriffe der zu implementierenden Domäne wurden bereits beschrieben, jedoch gibt es meist mehr Begriffe, die einer Beschreibung bedürfen. +
+Beispiel: Was bedeutet "Kunde"? Ein Nutzer des Systems? Der Kunde des Projektes (Auftraggeber)?
+
+// TODO!
+
+[[anchor-19]]
+== Offene Punkte
+Offene Punkte werden entweder direkt in der Spezifikation notiert. Wenn das Pflichtenheft zum finalen Review vorgelegt wird, sollte es keine offenen Punkte mehr geben.
+
+// TODO!

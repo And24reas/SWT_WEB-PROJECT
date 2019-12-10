@@ -1,0 +1,56 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+		BASIC STYLING IMPORTS:
+		These are the basic imports we need to style the page properly.
+		To do so you need to include this imports in all the templates where you need styling.
+		Bootstrap doc: https://getbootstrap.com/docs/4.4/components
+		Icons can be searched here: https://fontawesome.com/icons?d=gallery&m=free
+		-->
+
+    <!-- START BASIC STYLING IMPORTS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="https://kit.fontawesome.com/6a6b621601.js" crossorigin="anonymous"></script>
+    <!-- END BASIC STYLING IMPORTS -->
+
+    <title>CustomersList</title>
+</head>
+<body>
+<div th:include="navigation :: navigation"></div>
+<div class="container">
+    <div class="row">
+        <table class="table col-12">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">UserName</th>
+                <th scope="col">FirstName</th>
+                <th scope="col">LastName</th>
+                <th scope="col">E-Mail</th>
+                <th scope="col">Street</th>
+                <th scope="col">Postcode</th>
+                <th scope="col">City</th>
+                <th scope="col">Country</th>
+                <th scope="col">Phone</th>
+            </tr>
+            <tr th:each="customer : ${customers}">
+                <td th:text="'#' + ${customer.getId()}"></td>
+                <td th:text="${customer.getUserAccount().getUsername()}"></td>
+                <td th:text="${customer.getUserAccount().getFirstname()}"></td>
+                <td th:text="${customer.getUserAccount().getLastname()}">Otto</td>
+                <td th:text="${customer.getUserAccount().getEmail()}"></td>
+                <td th:text="${customer.getUserAddress().getStreetName()}"></td>
+                <td th:text="${customer.getUserAddress().getPostCode()}"></td>
+                <td th:text="${customer.getUserAddress().getCity()}"></td>
+                <td th:text="${customer.getUserAddress().getCountry()}"></td>
+                <td th:text="${customer.getPhoneNumber()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

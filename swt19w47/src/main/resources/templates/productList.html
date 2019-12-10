@@ -1,0 +1,77 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-spring4-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <!-- START BASIC STYLING IMPORTS -->
+    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}">
+    <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script src="https://kit.fontawesome.com/6a6b621601.js" crossorigin="anonymous"></script>
+    <!-- END BASIC STYLING IMPORTS -->
+
+    <link rel="stylesheet" type="text/css" th:href="@{/resources/css/product-list.css}"
+          href="../static/resources/css/product-list.css">
+
+    <title>ProductsList</title>
+</head>
+<body>
+<div th:include="navigation :: navigation"></div>
+<div class="container">
+    <div class="row">
+        <form class="col-12" th:action="@{/products}" method="get">
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group mt-3">
+                        <div class="input-group-prepend">
+                            <button class="btn btn-outline-secondary" type="submit" id="button-addon">Search</button>
+                        </div>
+                        <input type="text" class="form-control" placeholder="Search"
+                               aria-label="Example text with button addon" aria-describedby="button-addon" name="search">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 filter-radios">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filterType" id="all" value="ALL"
+                               th:checked="${type == 'ALL'}">
+                        <label class="form-check-label" for="all">ALL</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filterType" id="hardware" value="HARDWARE"
+                               th:checked="${type == 'HARDWARE'}">
+                        <label class="form-check-label" for="hardware">HARDWARE</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="filterType" id="serive" value="SERVICE"
+                               th:checked="${type == 'SERVICE'}">
+                        <label class="form-check-label" for="serive">SERVICE</label>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row mt-3">
+        <div class="col-3" th:each="product : ${products}">
+            <div class="card">
+                <img th:src="@{/resources/img/{image}.jpg(image=${product.getImage()})}"
+                     src="../static/resources/img/placeholder.jpg"
+                     class="card-img-top" alt="image">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.getName()}"></h5>
+                    <p class="card-text" th:text="${product.getDescription()}"></p>
+                    <div>
+                        <i class="fas fa-euro-sign pr-2"></i>
+                        <span class="card-text" th:text="${product.getPrice().getNumber()}"></span>
+                    </div>
+                </div>
+                <div class="card-footer text-muted font-weight-light">
+                    <small>#<span th:text="${product.getId()}"></span></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

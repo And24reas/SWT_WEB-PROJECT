@@ -1,0 +1,65 @@
+= Protokoll Gruppe 47
+
+Treffen am 30.10.2019
+
+Ort:      APB +
+Beginn:   16:40 Uhr +
+Ende:     17:40 Uhr
+
+__Schriftführer:__Lanea Lilienthal
+
+*Nächstes Treffen:* +
+04.11.2019, 15:00 Uhr, APB
+
+__Teilnehmer:__
+//Tabellarisch oder Aufzählung, Kennzeichnung von Teilnehmern mit besonderer Rolle (z.B. Kunde)
+
+- Ada
+- Andreas
+- David
+- Janosch
+- Lanea
+- Marie
+- Daniel (Tutor)
+
+== Bemerkungen
+Videoshop-Änderung als eigener branch (nicht mergen!), Screenshots der Diagramme hochladen fürs Pflichtenheft 
+offizieller Ausweichtermin: Montag 15:00 Uhr 
+
+== Retrospektive des letzten Sprints
+*Issue referenziert die Issue ID von GitHub*
+// Wie ist der Status der im letzten Sprint erstellten Issues/veteilten Aufgaben?
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Aufgabe |Status |Bemerkung
+|1     |Analyseklassendiagramm       |in Arbeit      |Klassen erstellt, Verbindungen zu bearbeiten/erstellen
+|2     |Sequenzdiagramm       |in Arbeit      |draft fertig, Verfeinerungen auf Grundlage von CRC
+|3     |Kontextdiagramm       |fertig      |Bild hochladen
+|4     |Top Level Architektur       |in Arbeit      |
+|5     |Use Case Diagramme       |in Arbeit      |draft fertig
+|6     |Dialoglandkarte       |in Arbeit      |mit Freeformdiagramm in MagicDraw oder anderem Programm möglich
+|7     |GUI Prototyp       |in Arbeit      |in HTML (?) begonnen, noch nicht alle Seiten fertig
+|8     |Pflichtenheft       |in Arbeit      |branch angelegt und begonnen
+|9     |CRC Karten       |fertig      |Montag erstellt, in analysis Ordner abgelegt 
+|===
+
+
+== Aktueller Stand
+Alle Diagramme in Arbeit und voraussichtlich pünktlich fertig. Videoshop-Erweiterung noch nicht begonnen, aber Aufgaben sind verteilt.
+
+== Planung des nächsten Sprints
+*Issue referenziert die Issue ID von GitHub*
+
+// See http://asciidoctor.org/docs/user-manual/=tables
+[option="headers"]
+|===
+|Issue |Titel |Beschreibung |Verantwortlicher |Status
+|-     |Videoshop    |Preisanpassung Warenkorb            |Marie                |noch nicht begonnen
+|-     |Videoshop     |nur ein Kommi pro User soll möglich sein            |Lanea                |noch nicht begonnen
+|-     |Videoshop     |Lager anpassbar machen            |Janosch                |noch nicht begonnen
+|-     |Videoshop     |Kundenliste bearbeitbar machen            |Andreas                |noch nicht begonnen
+|-     |Videoshop     |E-Mail Angabe für Kunden            |Ada                |noch nicht begonnen
+|-     |Videoshop     |Errorhandling Bewertung            |David                |noch nicht begonnen
+|===
