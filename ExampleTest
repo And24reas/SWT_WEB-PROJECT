@@ -27,6 +27,7 @@ public class EconomicManagerTest{
     }
 
     @Test
+//just added comments and changed a method as an example
 
     public void shouldCreateEntryWithInteger(){
         EconomicManager ecoManager = new EconomicManager();
@@ -34,7 +35,7 @@ public class EconomicManagerTest{
         ecoManager.addEntry(15, "15");
 
         ArrayList<EconomicEntry> result = new ArrayList<EconomicEntry>();
-        javax.money.MonetaryAmount value = Money.of(15, "EUR");
+        value = Money.of(15, "EUR");
         EconomicEntry element = new EconomicEntry(value, "15");
         result.add(element);
 
